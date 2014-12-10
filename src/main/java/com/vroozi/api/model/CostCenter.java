@@ -13,5 +13,5 @@ public class CostCenter {
 	private String name;
 	private String description;
 	
-	private ChartOfAccount chartOfAccount;
+	private String chartOfAccount;
 }

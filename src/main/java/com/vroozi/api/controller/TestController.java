@@ -13,7 +13,7 @@ import com.vroozi.api.repositories.CostCenterRepository;
 
 @ApiIgnore
 @Controller
-public class CostCenterController {
+public class TestController {
 
 	@Autowired
 	private CostCenterRepository costCenterRepository;
@@ -32,7 +32,7 @@ public class CostCenterController {
 		CostCenter costCenter = new CostCenter();
 		costCenter.setName("Sambhu Cost Center");
 		costCenter.setDescription("Sambhu Cost Center Description");
-		costCenter.setChartOfAccount(chartOfAccount);
+		costCenter.setChartOfAccount(chartOfAccount.getName());
 		
 		costCenterRepository.save(costCenter);
 		return costCenter;
