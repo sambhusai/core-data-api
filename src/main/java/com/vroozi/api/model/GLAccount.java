@@ -1,5 +1,4 @@
 package com.vroozi.api.model;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,20 +14,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @EqualsAndHashCode(exclude={"id", "lastUpdated"})
 @ToString
-@Document(collection="chart_of_accounts")
-public class ChartOfAccount implements Serializable {
+@Document(collection="glaccounts")
+public class GLAccount implements Serializable{
 
-	private static final long serialVersionUID = 5805435742478470499L;
+	private static final long serialVersionUID = -7632633995769014214L;
 	
 	@Id
 	private String id;
 	private String unitId;
+	private String code;
 	private String name;
 	private String description;
+	private String companyCode;
+	private String costCenter;
+	private String profitCenter;
 	private Date dateCreated;
 	private Date lastUpdated;
-	private boolean deleted;
-	private boolean active;
-
-
+	private Boolean deleted;
+	private Boolean active;
+	
 }

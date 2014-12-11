@@ -15,20 +15,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Setter
 @EqualsAndHashCode(exclude={"id", "lastUpdated"})
 @ToString
-@Document(collection="chart_of_accounts")
-public class ChartOfAccount implements Serializable {
-
-	private static final long serialVersionUID = 5805435742478470499L;
+@Document(collection="company_codes")
+public class CompanyCode implements Serializable{
+	
+	private static final long serialVersionUID = 8161184275786722261L;
 	
 	@Id
 	private String id;
 	private String unitId;
 	private String name;
 	private String description;
+	private String addressName;
+	private String currencyCode;
+	private String taxJurisdiction;
+	private String vatRegistrationNumber;
 	private Date dateCreated;
 	private Date lastUpdated;
 	private boolean deleted;
 	private boolean active;
-
-
+	
 }

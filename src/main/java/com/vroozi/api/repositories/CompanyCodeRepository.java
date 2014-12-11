@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import com.vroozi.api.model.CostCenter;
+import com.vroozi.api.model.CompanyCode;
 
 @Repository
-public interface CostCenterRepository extends MongoRepository<CostCenter, String>{
+public interface CompanyCodeRepository extends MongoRepository<CompanyCode, String>{
 
-	public List<CostCenter> findByUnitId(String unitId);
+	public List<CompanyCode> findByUnitId(String unitId);
 	
 }
