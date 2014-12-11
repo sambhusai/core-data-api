@@ -12,54 +12,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vroozi.api.model.ChartOfAccount;
-import com.vroozi.api.repositories.ChartOfAccountRepository;
+import com.vroozi.api.services.ChartOfAccountService;
 
 @Controller
-@RequestMapping(value="/chartOfAccounts")
+@RequestMapping(value = "/chartOfAccounts")
 public class ChartOfAccountController {
 
-	@Autowired
-	private ChartOfAccountRepository chartOfAccountRepository;
-	
-	@ResponseBody
-	@RequestMapping(method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-	public List<ChartOfAccount> listChartOfAccounts(){
-		return chartOfAccountRepository.findAll();
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/unitId/{unitId}", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-	public List<ChartOfAccount> getChartOfAccountsByUnitId(@PathVariable("unitId") String unitId){
-		return chartOfAccountRepository.findByUnitId(unitId);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/{id}", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
-	public ChartOfAccount getChartOfAccount(@PathVariable("id") String id){
-		return chartOfAccountRepository.findOne(id);
-	}
-	
-	@ResponseBody
-	@RequestMapping(method=RequestMethod.POST, consumes={MediaType.APPLICATION_JSON_VALUE}, produces={MediaType.APPLICATION_JSON_VALUE})
-	public ChartOfAccount createChartOfAccount(@RequestBody ChartOfAccount chartOfAccount){
-		return chartOfAccountRepository.save(chartOfAccount);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/{id}", method=RequestMethod.PUT, produces={MediaType.APPLICATION_JSON_VALUE})
-	public ChartOfAccount updateChartOfAccount(@PathVariable("id") String id, @RequestBody ChartOfAccount chartOfAccount){
-		chartOfAccount.setId(id);
-		return chartOfAccountRepository.save(chartOfAccount);
-	}
-	
-	@ResponseBody
-	@RequestMapping(value="/{id}", method=RequestMethod.DELETE, produces={MediaType.APPLICATION_JSON_VALUE})
-	public ChartOfAccount deleteChartOfAccount(@PathVariable("id") String id){
-		ChartOfAccount chartOfAccount = chartOfAccountRepository.findOne(id);
-		if(chartOfAccount != null){
-			chartOfAccountRepository.delete(chartOfAccount);
-		}
-		return chartOfAccountRepository.save(chartOfAccount);
-	}
-	
+  @Autowired
+  private ChartOfAccountService chartOfAccountService;
+
+  @ResponseBody
+  @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public List<ChartOfAccount> listChartOfAccounts() {
+    return chartOfAccountService.findAll();
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/unitId/{unitId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public List<ChartOfAccount> getChartOfAccountsByUnitId(@PathVariable("unitId") String unitId) {
+    return chartOfAccountService.findAllByUnitId(unitId);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ChartOfAccount getChartOfAccount(@PathVariable("id") String id) {
+    return chartOfAccountService.find(id);
+  }
+
+  @ResponseBody
+  @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ChartOfAccount createChartOfAccount(@RequestBody ChartOfAccount chartOfAccount) {
+    return chartOfAccountService.addNew(chartOfAccount);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ChartOfAccount updateChartOfAccount(@PathVariable("id") String id, @RequestBody ChartOfAccount chartOfAccount) {
+    chartOfAccount.setId(id);
+    return chartOfAccountService.update(chartOfAccount);
+  }
+
+  @ResponseBody
+  @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ChartOfAccount deleteChartOfAccount(@PathVariable("id") String id) {
+    ChartOfAccount chartOfAccount = chartOfAccountService.find(id);
+    if (chartOfAccount != null) {
+      chartOfAccountService.remove(chartOfAccount);
+    }
+    return chartOfAccountService.update(chartOfAccount);
+  }
+
 }
