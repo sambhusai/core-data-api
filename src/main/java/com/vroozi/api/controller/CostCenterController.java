@@ -2,6 +2,8 @@ package com.vroozi.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ import com.vroozi.api.services.CostCenterService;
 @Controller
 @RequestMapping(value = "/costCenters")
 public class CostCenterController {
+
+  private static final Logger LOG = LoggerFactory.getLogger(CostCenterController.class);
 
   @Autowired
   private CostCenterService costCenterService;
@@ -42,6 +46,7 @@ public class CostCenterController {
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
   public CostCenter createCostCenter(@RequestBody CostCenter costCenter) {
+    LOG.info("Getting Cost center from external api => {}", costCenter.toString());
     return costCenterService.addNew(costCenter);
   }
 
