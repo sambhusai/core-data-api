@@ -2,6 +2,8 @@ package com.vroozi.api.services.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +19,19 @@ import com.vroozi.api.services.ChartOfAccountService;
 @Service
 public class ChartOfAccountServiceImpl implements ChartOfAccountService {
 
+  private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountService.class);
   @Autowired
   private ChartOfAccountRepository chartOfAccountRepository;
 
   @Override
   public ChartOfAccount addNew(ChartOfAccount t) {
+    LOG.info("Adding new chart of account, {}", t.toString());
     return chartOfAccountRepository.save(t);
   }
 
   @Override
-  public void addAll(List<ChartOfAccount> list) {
-    chartOfAccountRepository.save(list);
+  public List<ChartOfAccount> addAll(List<ChartOfAccount> list) {
+    return chartOfAccountRepository.save(list);
   }
 
   @Override

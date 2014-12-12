@@ -31,7 +31,7 @@ public interface CrudService<T extends Serializable, Pk extends Serializable> {
    * 
    * @author anishmanandhar<anishmanandhar@lftechnology.com>
    */
-  public void addAll(List<T> list);
+  public List<T> addAll(List<T> list);
 
   /**
    * Update record with given data
