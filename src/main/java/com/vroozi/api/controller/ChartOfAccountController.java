@@ -2,6 +2,8 @@ package com.vroozi.api.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -18,12 +20,15 @@ import com.vroozi.api.services.ChartOfAccountService;
 @RequestMapping(value = "/chartOfAccounts")
 public class ChartOfAccountController {
 
+  private static final Logger LOG = LoggerFactory.getLogger(ChartOfAccountController.class);
+
   @Autowired
   private ChartOfAccountService chartOfAccountService;
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
   public List<ChartOfAccount> listChartOfAccounts() {
+    LOG.info("Inside list of charts of accounts");
     return chartOfAccountService.findAll();
   }
 
