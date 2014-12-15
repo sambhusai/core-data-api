@@ -122,6 +122,14 @@ public class CostCenter implements Serializable {
     this.active = active;
   }
 
+  public String getValidToDate() {
+    return validToDate;
+  }
+
+  public void setValidToDate(String validToDate) {
+    this.validToDate = validToDate;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -135,6 +143,7 @@ public class CostCenter implements Serializable {
     result = prime * result + ((name == null) ? 0 : name.hashCode());
     result = prime * result + ((profitCenter == null) ? 0 : profitCenter.hashCode());
     result = prime * result + ((unitId == null) ? 0 : unitId.hashCode());
+    result = prime * result + ((validToDate == null) ? 0 : validToDate.hashCode());
     return result;
   }
 
@@ -192,6 +201,11 @@ public class CostCenter implements Serializable {
         return false;
     } else if (!unitId.equals(other.unitId))
       return false;
+    if (validToDate == null) {
+      if (other.validToDate != null)
+        return false;
+    } else if (!validToDate.equals(other.validToDate))
+      return false;
     return true;
   }
 
@@ -199,15 +213,7 @@ public class CostCenter implements Serializable {
   public String toString() {
     return "CostCenter [id=" + id + ", unitId=" + unitId + ", code=" + code + ", name=" + name + ", description=" + description
         + ", companyCode=" + companyCode + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated + ", lastUpdated="
-        + lastUpdated + ", deleted=" + deleted + ", active=" + active + "]";
+        + lastUpdated + ", deleted=" + deleted + ", active=" + active + ", validToDate=" + validToDate + "]";
   }
-
-public String getValidToDate() {
-	return validToDate;
-}
-
-public void setValidToDate(String validToDate) {
-	this.validToDate = validToDate;
-}
 
 }
