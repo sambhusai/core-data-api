@@ -44,14 +44,14 @@ public class CostCenterServiceTest {
   public void testAddNew() {
     // given
     CostCenter costCenter = new CostCenter();
-    costCenter.setId("CC-112232321");
+    costCenter.setId("CostCenter-999");
     costCenter.setActive(true);
-    costCenter.setCode("Code-123");
-    costCenter.setCompanyCode("LF-12345");
+    costCenter.setCode("Code-999");
+    costCenter.setCompanyCode("Vroozi-12345");
     costCenter.setDateCreated(new Date());
     costCenter.setDeleted(false);
-    costCenter.setDescription("Test Description");
-    costCenter.setName("Test name");
+    costCenter.setDescription("Test Cost Center Description");
+    costCenter.setName("Test cost center name");
     costCenter.setProfitCenter("Test Profit Center");
     costCenter.setUnitId("UnitId-1234");
 

@@ -12,54 +12,54 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vroozi.api.model.GLAccount;
-import com.vroozi.api.repositories.GLAccountRepository;
+import com.vroozi.api.services.GLAccountService;
 
 @Controller
 @RequestMapping(value = "/glAccounts")
 public class GLAccountController {
 
   @Autowired
-  private GLAccountRepository glAccountRepository;
+  private GLAccountService glAccountService;
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
   public List<GLAccount> listGLAccounts() {
-    return glAccountRepository.findAll();
+    return glAccountService.findAll();
   }
 
   @ResponseBody
   @RequestMapping(value = "/unitId/{unitId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
   public List<GLAccount> getGLAccountsByUnitId(@PathVariable("unitId") String unitId) {
-    return glAccountRepository.findByUnitId(unitId);
+    return glAccountService.findByUnitId(unitId);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
   public GLAccount getGLAccount(@PathVariable("id") String id) {
-    return glAccountRepository.findOne(id);
+    return glAccountService.find(id);
   }
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
   public GLAccount createGLAccount(@RequestBody GLAccount glAccount) {
-    return glAccountRepository.save(glAccount);
+    return glAccountService.addNew(glAccount);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
   public GLAccount updateGLAccount(@PathVariable("id") String id, @RequestBody GLAccount glAccount) {
     // glAccount.setId(id);
-    return glAccountRepository.save(glAccount);
+    return glAccountService.update(glAccount);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
   public GLAccount deleteGLAccount(@PathVariable("id") String id) {
-    GLAccount glAccount = glAccountRepository.findOne(id);
+    GLAccount glAccount = glAccountService.find(id);
     if (glAccount != null) {
-      glAccountRepository.delete(glAccount);
+      glAccountService.remove(glAccount);
     }
-    return glAccountRepository.save(glAccount);
+    return glAccountService.addNew(glAccount);
   }
 
 }
