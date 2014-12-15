@@ -11,6 +11,11 @@ import com.vroozi.api.model.GLAccount;
 import com.vroozi.api.repositories.GLAccountRepository;
 import com.vroozi.api.services.GLAccountService;
 
+/**
+ * 
+ * @author anishmanandhar<anishmanandhar@lftechnology.com>
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class GLAccountServiceImpl implements GLAccountService {
@@ -24,7 +29,10 @@ public class GLAccountServiceImpl implements GLAccountService {
     t.setActive(true);
     t.setDateCreated(new Date());
     t.setDeleted(false);
-    return this.glAccountRepository.save(t);
+    if (t.getUnitId() != null) {
+      return this.glAccountRepository.save(t);
+    }
+    return null;
   }
 
   @Override

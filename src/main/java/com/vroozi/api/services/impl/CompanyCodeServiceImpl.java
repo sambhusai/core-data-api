@@ -10,6 +10,11 @@ import com.vroozi.api.model.CompanyCode;
 import com.vroozi.api.repositories.CompanyCodeRepository;
 import com.vroozi.api.services.CompanyCodeService;
 
+/**
+ * 
+ * @author anishmanandhar<anishmanandhar@lftechnology.com>
+ *
+ */
 @Service
 @Transactional(readOnly = true)
 public class CompanyCodeServiceImpl implements CompanyCodeService {

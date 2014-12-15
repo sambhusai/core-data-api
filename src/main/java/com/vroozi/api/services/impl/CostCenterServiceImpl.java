@@ -29,7 +29,10 @@ public class CostCenterServiceImpl implements CostCenterService {
     t.setDateCreated(new Date());
     t.setDeleted(false);
     t.setActive(true);
-    return this.costCenterRepository.save(t);
+    if (t.getUnitId() != null) {
+      return this.costCenterRepository.save(t);
+    }
+    return null;
   }
 
   @Override
