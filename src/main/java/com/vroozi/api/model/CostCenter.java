@@ -32,6 +32,7 @@ public class CostCenter implements Serializable {
   private Date lastUpdated;
   private Boolean deleted;
   private Boolean active;
+  private String validToDate;
 
   public String getId() {
     return id;
@@ -200,5 +201,13 @@ public class CostCenter implements Serializable {
         + ", companyCode=" + companyCode + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated + ", lastUpdated="
         + lastUpdated + ", deleted=" + deleted + ", active=" + active + "]";
   }
+
+public String getValidToDate() {
+	return validToDate;
+}
+
+public void setValidToDate(String validToDate) {
+	this.validToDate = validToDate;
+}
 
 }
