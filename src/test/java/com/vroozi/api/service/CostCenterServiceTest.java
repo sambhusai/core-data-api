@@ -51,7 +51,6 @@ public class CostCenterServiceTest {
     costCenter.setDateCreated(new Date());
     costCenter.setDeleted(false);
     costCenter.setDescription("Test Cost Center Description");
-    costCenter.setName("Test cost center name");
     costCenter.setProfitCenter("Test Profit Center");
     costCenter.setUnitId("UnitId-1234");
 

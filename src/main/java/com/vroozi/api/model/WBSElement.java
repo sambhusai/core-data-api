@@ -24,11 +24,9 @@ public class WBSElement implements Serializable {
   private String id;
   private String unitId;
   private String code;
-  private String name;
   private String description;
   private String companyCode;
   private String profitCenter;
-  private Boolean idaFlag;
   private Date dateCreated;
   private Date lastUpdated;
   private Boolean deleted;
@@ -58,14 +56,6 @@ public class WBSElement implements Serializable {
     this.code = code;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getDescription() {
     return description;
   }
@@ -88,14 +78,6 @@ public class WBSElement implements Serializable {
 
   public void setProfitCenter(String profitCenter) {
     this.profitCenter = profitCenter;
-  }
-
-  public Boolean getIdaFlag() {
-    return idaFlag;
-  }
-
-  public void setIdaFlag(Boolean idaFlag) {
-    this.idaFlag = idaFlag;
   }
 
   public Date getDateCreated() {
@@ -140,8 +122,6 @@ public class WBSElement implements Serializable {
     result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
     result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
     result = prime * result + ((description == null) ? 0 : description.hashCode());
-    result = prime * result + ((idaFlag == null) ? 0 : idaFlag.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
     result = prime * result + ((profitCenter == null) ? 0 : profitCenter.hashCode());
     result = prime * result + ((unitId == null) ? 0 : unitId.hashCode());
     return result;
@@ -186,16 +166,6 @@ public class WBSElement implements Serializable {
         return false;
     } else if (!description.equals(other.description))
       return false;
-    if (idaFlag == null) {
-      if (other.idaFlag != null)
-        return false;
-    } else if (!idaFlag.equals(other.idaFlag))
-      return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
     if (profitCenter == null) {
       if (other.profitCenter != null)
         return false;
@@ -211,9 +181,9 @@ public class WBSElement implements Serializable {
 
   @Override
   public String toString() {
-    return "WBSElement [id=" + id + ", unitId=" + unitId + ", code=" + code + ", name=" + name + ", description=" + description
-        + ", companyCode=" + companyCode + ", profitCenter=" + profitCenter + ", idaFlag=" + idaFlag + ", dateCreated=" + dateCreated
-        + ", lastUpdated=" + lastUpdated + ", deleted=" + deleted + ", active=" + active + "]";
+    return "WBSElement [id=" + id + ", unitId=" + unitId + ", code=" + code + ", description=" + description + ", companyCode="
+        + companyCode + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated + ", lastUpdated=" + lastUpdated + ", deleted="
+        + deleted + ", active=" + active + "]";
   }
 
 }

@@ -46,8 +46,9 @@ public class CostCenterController {
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
   public CostCenter createCostCenter(@RequestBody CostCenter costCenter) {
-    LOG.info("Getting Cost center from external api => {}", costCenter.toString());
-    return costCenterService.addNew(costCenter);
+    CostCenter cc = costCenterService.addNew(costCenter);
+    LOG.info("Cost center => {}", cc.toString());
+    return cc;
   }
 
   @ResponseBody
