@@ -9,7 +9,7 @@ import com.vroozi.api.model.CostCenter;
  * @author anishmanandhar<anishmanandhar@lftechnology.com>
  *
  */
-public interface CostCenterService extends CrudService<CostCenter, String> {
+public interface CostCenterService extends MasterDataService<CostCenter, String> {
 
   /**
    * 
