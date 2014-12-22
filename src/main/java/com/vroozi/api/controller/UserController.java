@@ -23,38 +23,38 @@ public class UserController {
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<User> listOfInternalOrders() {
+  public List<User> listOfUsers() {
     return userService.findAll();
   }
 
   @ResponseBody
   @RequestMapping(value = "/unitId/{unitId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<User> getInternalOrdersByUnitId(@PathVariable("unitId") String unitId) {
+  public List<User> getUsersByUnitId(@PathVariable("unitId") String unitId) {
     return userService.findAllByUnitId(unitId);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public User getInternalOrder(@PathVariable("id") String id) {
+  public User getUser(@PathVariable("id") String id) {
     return userService.find(id);
   }
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public User createInternalOrder(@RequestBody User user) {
+  public User createUser(@RequestBody User user) {
     return userService.addNew(user);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public User updateInternalOrder(@PathVariable("id") String id, @RequestBody User user) {
+  public User updateUser(@PathVariable("id") String id, @RequestBody User user) {
     user.setId(id);
     return userService.update(user);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public User deleteInternalOrder(@PathVariable("id") String id) {
+  public User deleteUser(@PathVariable("id") String id) {
     User user = userService.find(id);
     if (user != null) {
       userService.remove(user);

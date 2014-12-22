@@ -23,38 +23,38 @@ public class SupplierController {
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<Supplier> listOfInternalOrders() {
+  public List<Supplier> listOfSuppliers() {
     return supplierService.findAll();
   }
 
   @ResponseBody
   @RequestMapping(value = "/unitId/{unitId}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public List<Supplier> getInternalOrdersByUnitId(@PathVariable("unitId") String unitId) {
+  public List<Supplier> getSuppliersByUnitId(@PathVariable("unitId") String unitId) {
     return supplierService.findAllByUnitId(unitId);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public Supplier getInternalOrder(@PathVariable("id") String id) {
+  public Supplier getSupplier(@PathVariable("id") String id) {
     return supplierService.find(id);
   }
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public Supplier createInternalOrder(@RequestBody Supplier supplier) {
+  public Supplier createSupplier(@RequestBody Supplier supplier) {
     return supplierService.addNew(supplier);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.PUT, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public Supplier updateInternalOrder(@PathVariable("id") String id, @RequestBody Supplier supplier) {
+  public Supplier updateSupplier(@PathVariable("id") String id, @RequestBody Supplier supplier) {
     supplier.setId(id);
     return supplierService.update(supplier);
   }
 
   @ResponseBody
   @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public Supplier deleteInternalOrder(@PathVariable("id") String id) {
+  public Supplier deleteSupplier(@PathVariable("id") String id) {
     Supplier supplier = supplierService.find(id);
     if (supplier != null) {
       supplierService.remove(supplier);
