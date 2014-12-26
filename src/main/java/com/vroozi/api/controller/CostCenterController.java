@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vroozi.api.model.CostCenter;
+import com.vroozi.api.response.JsonResponse;
 import com.vroozi.api.services.CostCenterService;
 
 @Controller
@@ -45,10 +46,21 @@ public class CostCenterController {
 
   @ResponseBody
   @RequestMapping(method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-  public CostCenter createCostCenter(@RequestBody CostCenter costCenter) {
-    CostCenter cc = costCenterService.addNew(costCenter);
-    LOG.info("Cost center => {}", cc.toString());
-    return cc;
+  public JsonResponse<CostCenter> createCostCenter(@RequestBody CostCenter costCenter) {
+    JsonResponse<CostCenter> jsonResponse = new JsonResponse<CostCenter>();
+    try {
+      CostCenter cc = costCenterService.addNew(costCenter);
+      LOG.info("Cost center => {}", cc.toString());
+      jsonResponse.getStatus().setCode("201");
+      jsonResponse.getStatus().setMessage("Cost Center Created");
+      jsonResponse.getStatus().setText("OK");
+      jsonResponse.setObject(cc);
+    } catch (Exception ex) {
+      jsonResponse.getStatus().setCode("500");
+      jsonResponse.getStatus().setText("Server Error");
+      jsonResponse.getStatus().setMessage(ex.getMessage());
+    }
+    return jsonResponse;
   }
 
   @ResponseBody
