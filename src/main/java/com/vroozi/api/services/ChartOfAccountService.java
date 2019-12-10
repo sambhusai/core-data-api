@@ -5,7 +5,7 @@ import java.util.List;
 import com.vroozi.api.model.ChartOfAccount;
 
 /**
- * This interface extends {@link CrudService}
+ * This interface extends {@link MasterDataService}
  * 
  * Contains all the method required for CRUD operation of {@link ChartOfAccount}
  * 
@@ -14,7 +14,7 @@ import com.vroozi.api.model.ChartOfAccount;
  * @author anishmanandhar<anishmanandhar@lftechnology.com>
  *
  */
-public interface ChartOfAccountService extends CrudService<ChartOfAccount, String> {
+public interface ChartOfAccountService extends MasterDataService<ChartOfAccount, String> {
 
   /**
    * Get list of {@link ChartOfAccount} by unitId

@@ -9,7 +9,7 @@ import com.vroozi.api.model.GLAccount;
  * @author anishmanandhar<anishmanandhar@lftechnology.com>
  *
  */
-public interface GLAccountService extends CrudService<GLAccount, String> {
+public interface GLAccountService extends MasterDataService<GLAccount, String> {
 
   /**
    * Get list of {@link GLAccount} from unitId

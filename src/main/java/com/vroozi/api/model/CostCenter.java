@@ -3,6 +3,8 @@ package com.vroozi.api.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.codehaus.jackson.map.ser.std.DateSerializer;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,7 +26,6 @@ public class CostCenter implements Serializable {
   private String id;
   private String unitId;
   private String code;
-  private String name;
   private String description;
   private String companyCode;
   private String profitCenter;
@@ -32,7 +33,8 @@ public class CostCenter implements Serializable {
   private Date lastUpdated;
   private Boolean deleted;
   private Boolean active;
-  private String validToDate;
+  private Date validTo;
+  private Date validFrom;
 
   public String getId() {
     return id;
@@ -56,14 +58,6 @@ public class CostCenter implements Serializable {
 
   public void setCode(String code) {
     this.code = code;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public String getDescription() {
@@ -90,6 +84,7 @@ public class CostCenter implements Serializable {
     this.profitCenter = profitCenter;
   }
 
+  @JsonSerialize(using = DateSerializer.class)
   public Date getDateCreated() {
     return dateCreated;
   }
@@ -122,14 +117,6 @@ public class CostCenter implements Serializable {
     this.active = active;
   }
 
-  public String getValidToDate() {
-    return validToDate;
-  }
-
-  public void setValidToDate(String validToDate) {
-    this.validToDate = validToDate;
-  }
-
   @Override
   public int hashCode() {
     final int prime = 31;
@@ -140,10 +127,10 @@ public class CostCenter implements Serializable {
     result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
     result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
     result = prime * result + ((description == null) ? 0 : description.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
     result = prime * result + ((profitCenter == null) ? 0 : profitCenter.hashCode());
     result = prime * result + ((unitId == null) ? 0 : unitId.hashCode());
-    result = prime * result + ((validToDate == null) ? 0 : validToDate.hashCode());
+    result = prime * result + ((validFrom == null) ? 0 : validFrom.hashCode());
+    result = prime * result + ((validTo == null) ? 0 : validTo.hashCode());
     return result;
   }
 
@@ -186,11 +173,6 @@ public class CostCenter implements Serializable {
         return false;
     } else if (!description.equals(other.description))
       return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
     if (profitCenter == null) {
       if (other.profitCenter != null)
         return false;
@@ -201,19 +183,24 @@ public class CostCenter implements Serializable {
         return false;
     } else if (!unitId.equals(other.unitId))
       return false;
-    if (validToDate == null) {
-      if (other.validToDate != null)
+    if (validFrom == null) {
+      if (other.validFrom != null)
         return false;
-    } else if (!validToDate.equals(other.validToDate))
+    } else if (!validFrom.equals(other.validFrom))
+      return false;
+    if (validTo == null) {
+      if (other.validTo != null)
+        return false;
+    } else if (!validTo.equals(other.validTo))
       return false;
     return true;
   }
 
   @Override
   public String toString() {
-    return "CostCenter [id=" + id + ", unitId=" + unitId + ", code=" + code + ", name=" + name + ", description=" + description
-        + ", companyCode=" + companyCode + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated + ", lastUpdated="
-        + lastUpdated + ", deleted=" + deleted + ", active=" + active + ", validToDate=" + validToDate + "]";
+    return "CostCenter [id=" + id + ", unitId=" + unitId + ", code=" + code + ", description=" + description + ", companyCode="
+        + companyCode + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated + ", lastUpdated=" + lastUpdated + ", deleted="
+        + deleted + ", active=" + active + ", validTo=" + validTo + ", validFrom=" + validFrom + "]";
   }
 
 }

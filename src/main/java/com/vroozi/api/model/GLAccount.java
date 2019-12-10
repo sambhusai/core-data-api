@@ -24,11 +24,10 @@ public class GLAccount implements Serializable {
   private String id;
   private String unitId;
   private String code;
-  private String name;
   private String description;
   private String companyCode;
-  private String costCenter;
-  private String profitCenter;
+  private Boolean deleteIndicator;
+  private Boolean blockForPosting;
   private Date dateCreated;
   private Date lastUpdated;
   private Boolean deleted;
@@ -58,14 +57,6 @@ public class GLAccount implements Serializable {
     this.code = code;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
   public String getDescription() {
     return description;
   }
@@ -82,20 +73,20 @@ public class GLAccount implements Serializable {
     this.companyCode = companyCode;
   }
 
-  public String getCostCenter() {
-    return costCenter;
+  public Boolean getDeleteIndicator() {
+    return deleteIndicator;
   }
 
-  public void setCostCenter(String costCenter) {
-    this.costCenter = costCenter;
+  public void setDeleteIndicator(Boolean deleteIndicator) {
+    this.deleteIndicator = deleteIndicator;
   }
 
-  public String getProfitCenter() {
-    return profitCenter;
+  public Boolean getBlockForPosting() {
+    return blockForPosting;
   }
 
-  public void setProfitCenter(String profitCenter) {
-    this.profitCenter = profitCenter;
+  public void setBlockForPosting(Boolean blockForPosting) {
+    this.blockForPosting = blockForPosting;
   }
 
   public Date getDateCreated() {
@@ -135,14 +126,13 @@ public class GLAccount implements Serializable {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((active == null) ? 0 : active.hashCode());
+    result = prime * result + ((blockForPosting == null) ? 0 : blockForPosting.hashCode());
     result = prime * result + ((code == null) ? 0 : code.hashCode());
     result = prime * result + ((companyCode == null) ? 0 : companyCode.hashCode());
-    result = prime * result + ((costCenter == null) ? 0 : costCenter.hashCode());
     result = prime * result + ((dateCreated == null) ? 0 : dateCreated.hashCode());
+    result = prime * result + ((deleteIndicator == null) ? 0 : deleteIndicator.hashCode());
     result = prime * result + ((deleted == null) ? 0 : deleted.hashCode());
     result = prime * result + ((description == null) ? 0 : description.hashCode());
-    result = prime * result + ((name == null) ? 0 : name.hashCode());
-    result = prime * result + ((profitCenter == null) ? 0 : profitCenter.hashCode());
     result = prime * result + ((unitId == null) ? 0 : unitId.hashCode());
     return result;
   }
@@ -161,6 +151,11 @@ public class GLAccount implements Serializable {
         return false;
     } else if (!active.equals(other.active))
       return false;
+    if (blockForPosting == null) {
+      if (other.blockForPosting != null)
+        return false;
+    } else if (!blockForPosting.equals(other.blockForPosting))
+      return false;
     if (code == null) {
       if (other.code != null)
         return false;
@@ -171,15 +166,15 @@ public class GLAccount implements Serializable {
         return false;
     } else if (!companyCode.equals(other.companyCode))
       return false;
-    if (costCenter == null) {
-      if (other.costCenter != null)
-        return false;
-    } else if (!costCenter.equals(other.costCenter))
-      return false;
     if (dateCreated == null) {
       if (other.dateCreated != null)
         return false;
     } else if (!dateCreated.equals(other.dateCreated))
+      return false;
+    if (deleteIndicator == null) {
+      if (other.deleteIndicator != null)
+        return false;
+    } else if (!deleteIndicator.equals(other.deleteIndicator))
       return false;
     if (deleted == null) {
       if (other.deleted != null)
@@ -191,16 +186,6 @@ public class GLAccount implements Serializable {
         return false;
     } else if (!description.equals(other.description))
       return false;
-    if (name == null) {
-      if (other.name != null)
-        return false;
-    } else if (!name.equals(other.name))
-      return false;
-    if (profitCenter == null) {
-      if (other.profitCenter != null)
-        return false;
-    } else if (!profitCenter.equals(other.profitCenter))
-      return false;
     if (unitId == null) {
       if (other.unitId != null)
         return false;
@@ -211,8 +196,8 @@ public class GLAccount implements Serializable {
 
   @Override
   public String toString() {
-    return "GLAccount [id=" + id + ", unitId=" + unitId + ", code=" + code + ", name=" + name + ", description=" + description
-        + ", companyCode=" + companyCode + ", costCenter=" + costCenter + ", profitCenter=" + profitCenter + ", dateCreated=" + dateCreated
+    return "GLAccount [id=" + id + ", unitId=" + unitId + ", code=" + code + ", description=" + description + ", companyCode="
+        + companyCode + ", deleteIndicator=" + deleteIndicator + ", blockForPosting=" + blockForPosting + ", dateCreated=" + dateCreated
         + ", lastUpdated=" + lastUpdated + ", deleted=" + deleted + ", active=" + active + "]";
   }
 

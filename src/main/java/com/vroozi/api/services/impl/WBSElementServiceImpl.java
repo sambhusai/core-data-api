@@ -25,7 +25,7 @@ public class WBSElementServiceImpl implements WBSElementService {
     t.setDateCreated(new Date());
     t.setDeleted(false);
     if (t.getUnitId() != null) {
-      return wbsElementRepository.save(t);
+      return this.wbsElementRepository.save(t);
     }
     return null;
   }
